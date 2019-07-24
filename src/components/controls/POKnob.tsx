@@ -68,7 +68,7 @@ export default class POKnob extends Component<Props> {
 
   handlePointerDown = e => {
     e.preventDefault();
-    this.firstValue = this.applySensitivity(e.pageY) - this.value;
+    this.firstValue = this.applySensitivity(-e.pageY) - this.value;
 
     document.addEventListener("pointermove", this.handleDrag);
     document.addEventListener("pointerup", this.handlePointerUp);
@@ -79,7 +79,7 @@ export default class POKnob extends Component<Props> {
   };
 
   handleDrag = e => {
-    const dy = this.applySensitivity(e.y) - this.firstValue;
+    const dy = this.applySensitivity(-e.y) - this.firstValue;
 
     if (dy < this.minValue) {
       this.value = this.minValue;
