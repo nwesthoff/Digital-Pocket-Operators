@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, SvgIcon } from "@material-ui/core";
 import POButton from "./controls/POButton";
 import POKnob from "./controls/POKnob";
 import PO28Button1Icon from "../icons/PO28/Button1Icon";

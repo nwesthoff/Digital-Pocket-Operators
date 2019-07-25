@@ -67,7 +67,7 @@ export default class POButton extends Component<Props> {
             <POButtonClick />
           </ButtonHousing>
         </ButtonBackground>
-        <Typography variant="body2" color="primary" align="center">
+        <Typography variant="body1" color="primary" align="center">
           {this.props.name}
         </Typography>
         {this.props.icon ? (
