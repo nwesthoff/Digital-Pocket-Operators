@@ -12,3 +12,16 @@ export const ThemePO16 = createMuiTheme({
     }
   }
 });
+
+export const ThemePO28 = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#D8A971",
+      main: "#F5110E",
+      dark: "#B7281A"
+    },
+    secondary: {
+      main: "#D5D9DC"
+    }
+  }
+});

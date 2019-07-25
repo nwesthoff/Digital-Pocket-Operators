@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ThemePO16 } from "../config/Theme";
+import { ThemePO28 } from "../config/Theme";
 import styled from "styled-components";
 import { Typography } from "@material-ui/core";
 
@@ -8,7 +8,7 @@ const PODisplayFrame = styled.div`
 `;
 
 const PODisplayBackground = styled.div`
-  background-color: ${ThemePO16.palette.secondary.main};
+  background-color: ${ThemePO28.palette.secondary.main};
   height: 130px;
   width: 100%;
   display: flex;

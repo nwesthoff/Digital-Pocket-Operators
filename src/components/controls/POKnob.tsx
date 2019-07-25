@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { ThemePO16 } from "../../config/Theme";
+import { ThemePO28 } from "../../config/Theme";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 
@@ -25,7 +25,7 @@ const POKnobTwist = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  background-color: ${ThemePO16.palette.primary.main};
+  background-color: ${ThemePO28.palette.primary.main};
   position: relative;
   display: flex;
   justify-content: center;
@@ -37,7 +37,7 @@ const POKnobTwist = styled.div`
     height: 70%;
     width: 10px;
     border-radius: 5px;
-    background-color: ${ThemePO16.palette.primary.dark};
+    background-color: ${ThemePO28.palette.primary.dark};
   }
 `;
 

@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { ThemePO16 } from "./config/Theme";
+import { ThemePO28 } from "./config/Theme";
 import { MuiThemeProvider } from "@material-ui/core";
 
 const GlobalStyle = createGlobalStyle`
@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 export default class Index extends React.Component {
   render() {
     return (
-      <MuiThemeProvider theme={ThemePO16}>
+      <MuiThemeProvider theme={ThemePO28}>
         <GlobalStyle />
         <App />
       </MuiThemeProvider>
