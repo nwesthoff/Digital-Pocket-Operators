@@ -4,6 +4,10 @@ import { Grid } from "@material-ui/core";
 import POButtonGrid from "./POButtonGrid";
 import PODisplay from "./PODisplay";
 import POHeader from "./POHeader";
+import { observable } from "mobx";
+import { observer } from "mobx-react";
+import POTransport from "../synth/Transport";
+import Tone from "tone";
 
 const PhoneContainer = styled.div`
   border-radius: 5px;

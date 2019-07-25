@@ -46,6 +46,7 @@ interface Props {
   minValue?: number;
   maxValue?: number;
   defaultValue?: number;
+  setValue?: (value: number) => {};
 }
 
 @observer
@@ -53,10 +54,10 @@ export default class POKnob extends Component<Props> {
   @observable
   value: number = this.props.defaultValue || 0;
 
-  minValue: number = this.props.minValue || -50;
-  maxValue: number = this.props.maxValue || 50;
+  minValue: number = this.props.minValue || 0;
+  maxValue: number = this.props.maxValue || 100;
   @observable
-  firstValue?: number = this.props.defaultValue || -50;
+  firstValue?: number = this.props.defaultValue || 0;
 
   componentWillUnmount() {
     document.removeEventListener("pointermove", this.handleDrag, false);
@@ -88,6 +89,7 @@ export default class POKnob extends Component<Props> {
       this.value = this.maxValue;
     } else {
       this.value = dy;
+      this.props.setValue(Math.round(dy));
     }
   };
 

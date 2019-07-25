@@ -91,14 +91,22 @@ interface Props {
     | "error";
 
   stripedBackground?: boolean;
+  function?: VoidFunction;
 }
 
 export default class POButton extends Component<Props> {
+  handleClick = () => {
+    this.props.function();
+  };
+
   render() {
     return (
       <ButtonContainer>
-        <ButtonBackground striped={this.props.stripedBackground}>
-          <ButtonLight on={Math.random() > 0.5 ? true : false} />
+        <ButtonBackground
+          striped={this.props.stripedBackground}
+          onClick={this.handleClick}
+        >
+          <ButtonLight on={this.props.lightOn} />
           <ButtonHousing>
             <POButtonClick />
           </ButtonHousing>

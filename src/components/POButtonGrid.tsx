@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Grid, SvgIcon } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import POButton from "./controls/POButton";
 import POKnob from "./controls/POKnob";
 import PO28Button1Icon from "../icons/PO28/Button1Icon";
@@ -18,7 +18,11 @@ import PO28Button13Icon from "../icons/PO28/Button13Icon";
 import PO28Button14Icon from "../icons/PO28/Button14Icon";
 import PO28Button15Icon from "../icons/PO28/Button15Icon";
 import PO28Button16Icon from "../icons/PO28/Button16Icon";
+import Tone from "tone";
+import { synthStore } from "../stores/SynthStore";
+import { observer } from "mobx-react";
 
+@observer
 export default class POButtonGrid extends Component {
   render() {
     return (
@@ -29,7 +33,16 @@ export default class POButtonGrid extends Component {
             { name: "pattern" },
             { name: "bpm" },
             { name: "A", type: "knob" },
-            { name: "B", type: "knob" }
+            {
+              name: "B",
+              type: "knob",
+              maxValue: 180,
+              minValue: 60,
+              defaultValue: 100,
+              setValue: (value: number) => {
+                synthStore.bpm = value;
+              }
+            }
           ],
           [
             { name: "1", icon: <PO28Button1Icon /> },
@@ -50,7 +63,16 @@ export default class POButtonGrid extends Component {
             { name: "10", icon: <PO28Button10Icon /> },
             { name: "11", icon: <PO28Button11Icon /> },
             { name: "12", icon: <PO28Button12Icon /> },
-            { name: "play" }
+            {
+              name: "play",
+              function: () => {
+                if (Tone.Transport.state === "started") {
+                  Tone.Transport.pause();
+                } else {
+                  Tone.Transport.start();
+                }
+              }
+            }
           ],
           [
             { name: "13", icon: <PO28Button13Icon /> },
@@ -66,11 +88,15 @@ export default class POButtonGrid extends Component {
                 return (
                   <Grid item key={`col ${icol}`}>
                     {button.type === "knob" ? (
-                      <POKnob />
+                      <POKnob {...button} />
                     ) : (
                       <POButton
-                        name={button.name}
-                        icon={button.icon}
+                        lightOn={
+                          button.name ===
+                          (synthStore.sequence.progress + 1).toString()
+                            ? true
+                            : false
+                        }
                         {...button}
                       />
                     )}
