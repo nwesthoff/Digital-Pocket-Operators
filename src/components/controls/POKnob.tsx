@@ -51,7 +51,7 @@ interface Props {
 @observer
 export default class POKnob extends Component<Props> {
   @observable
-  value: number = this.props.defaultValue || -50;
+  value: number = this.props.defaultValue || 0;
 
   minValue: number = this.props.minValue || -50;
   maxValue: number = this.props.maxValue || 50;
@@ -97,7 +97,9 @@ export default class POKnob extends Component<Props> {
         <ButtonHousing>
           <POKnobTwist
             style={{
-              transform: `rotate(${this.value * 2.6}deg)`
+              transform: `rotate(${(this.value - this.minValue) *
+                (260 / (this.maxValue - this.minValue)) -
+                130}deg)`
             }}
             onPointerDown={this.handlePointerDown}
             value={this.value}
