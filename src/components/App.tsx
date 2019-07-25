@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Grid } from "@material-ui/core";
 import POButtonGrid from "./POButtonGrid";
 import PODisplay from "./PODisplay";
+import POHeader from "./POHeader";
 
 const PhoneContainer = styled.div`
   max-height: 100%;
@@ -28,6 +29,7 @@ export default class App extends Component {
       >
         <PhoneContainer>
           <StackUpsideDown container direction="column" justify="flex-end">
+            <POHeader />
             <PODisplay />
             <POButtonGrid />
           </StackUpsideDown>

@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { ThemePO28 } from "../../config/Theme";
 import { Typography } from "@material-ui/core";
 
+const ButtonContainer = styled.div`
+  position: relative;
+`;
+
 const ButtonBackground = styled.div`
   width: 60px;
   height: 60px;
@@ -42,14 +46,21 @@ const POButtonClick = styled.div`
   }
 `;
 
+const ButtonIconBox = styled.div`
+  position: absolute;
+  bottom: -1px;
+  right: -8px;
+`;
+
 interface Props {
   name: string;
+  icon?: React.Component;
 }
 
 export default class POButton extends Component<Props> {
   render() {
     return (
-      <div>
+      <ButtonContainer>
         <ButtonBackground>
           <ButtonLight on={Math.random() > 0.5 ? true : false} />
           <ButtonHousing>
@@ -59,7 +70,10 @@ export default class POButton extends Component<Props> {
         <Typography variant="body2" color="primary" align="center">
           {this.props.name}
         </Typography>
-      </div>
+        {this.props.icon ? (
+          <ButtonIconBox>{this.props.icon}</ButtonIconBox>
+        ) : null}
+      </ButtonContainer>
     );
   }
 }

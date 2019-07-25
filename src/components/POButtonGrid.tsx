@@ -2,6 +2,22 @@ import React, { Component, Fragment } from "react";
 import { Grid } from "@material-ui/core";
 import POButton from "./controls/POButton";
 import POKnob from "./controls/POKnob";
+import PO28Button1Icon from "../icons/PO28/Button1Icon";
+import PO28Button2Icon from "../icons/PO28/Button2Icon";
+import PO28Button3Icon from "../icons/PO28/Button3Icon";
+import PO28Button4Icon from "../icons/PO28/Button4Icon";
+import PO28Button5Icon from "../icons/PO28/Button5Icon";
+import PO28Button6Icon from "../icons/PO28/Button6Icon";
+import PO28Button7Icon from "../icons/PO28/Button7Icon";
+import PO28Button8Icon from "../icons/PO28/Button8Icon";
+import PO28Button9Icon from "../icons/PO28/Button9Icon";
+import PO28Button10Icon from "../icons/PO28/Button10Icon";
+import PO28Button11Icon from "../icons/PO28/Button11Icon";
+import PO28Button12Icon from "../icons/PO28/Button12Icon";
+import PO28Button13Icon from "../icons/PO28/Button13Icon";
+import PO28Button14Icon from "../icons/PO28/Button14Icon";
+import PO28Button15Icon from "../icons/PO28/Button15Icon";
+import PO28Button16Icon from "../icons/PO28/Button16Icon";
 
 export default class POButtonGrid extends Component {
   render() {
@@ -16,31 +32,31 @@ export default class POButtonGrid extends Component {
             { name: "B", type: "knob" }
           ],
           [
-            { name: "1" },
-            { name: "2" },
-            { name: "3" },
-            { name: "4" },
-            { name: "key" }
+            { name: "1", icon: <PO28Button1Icon /> },
+            { name: "2", icon: <PO28Button2Icon /> },
+            { name: "3", icon: <PO28Button3Icon /> },
+            { name: "4", icon: <PO28Button4Icon /> },
+            { name: "glide" }
           ],
           [
-            { name: "5" },
-            { name: "6" },
-            { name: "7" },
-            { name: "8" },
-            { name: "style" }
+            { name: "5", icon: <PO28Button5Icon /> },
+            { name: "6", icon: <PO28Button6Icon /> },
+            { name: "7", icon: <PO28Button7Icon /> },
+            { name: "8", icon: <PO28Button8Icon /> },
+            { name: "FX" }
           ],
           [
-            { name: "9" },
-            { name: "10" },
-            { name: "11" },
-            { name: "12" },
+            { name: "9", icon: <PO28Button9Icon /> },
+            { name: "10", icon: <PO28Button10Icon /> },
+            { name: "11", icon: <PO28Button11Icon /> },
+            { name: "12", icon: <PO28Button12Icon /> },
             { name: "play" }
           ],
           [
-            { name: "13" },
-            { name: "14" },
-            { name: "15" },
-            { name: "16" },
+            { name: "13", icon: <PO28Button13Icon /> },
+            { name: "14", icon: <PO28Button14Icon /> },
+            { name: "15", icon: <PO28Button15Icon /> },
+            { name: "16", icon: <PO28Button16Icon /> },
             { name: "write" }
           ]
         ].map((row, irow) => {
@@ -52,7 +68,7 @@ export default class POButtonGrid extends Component {
                     {button.type === "knob" ? (
                       <POKnob />
                     ) : (
-                      <POButton name={button.name} />
+                      <POButton name={button.name} icon={button.icon} />
                     )}
                   </Grid>
                 );

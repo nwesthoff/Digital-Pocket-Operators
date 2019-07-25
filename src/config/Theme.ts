@@ -1,6 +1,9 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 export const ThemePO16 = createMuiTheme({
+  typography: {
+    fontWeightRegular: 300
+  },
   palette: {
     primary: {
       light: "#F6BA71",
@@ -14,6 +17,9 @@ export const ThemePO16 = createMuiTheme({
 });
 
 export const ThemePO28 = createMuiTheme({
+  typography: {
+    fontWeightRegular: 300
+  },
   palette: {
     primary: {
       light: "#D8A971",

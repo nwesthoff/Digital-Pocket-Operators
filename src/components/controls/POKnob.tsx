@@ -15,6 +15,7 @@ const ButtonBackground = styled.div`
 const ButtonHousing = styled.div`
   width: 50px;
   height: 60px;
+  border-radius: 5px;
   background-color: silver;
   display: flex;
   justify-content: center;
