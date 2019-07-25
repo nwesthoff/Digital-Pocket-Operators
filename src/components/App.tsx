@@ -6,11 +6,13 @@ import PODisplay from "./PODisplay";
 import POHeader from "./POHeader";
 
 const PhoneContainer = styled.div`
+  border-radius: 5px;
   max-height: 100%;
   max-width: 100%;
   width: 414px;
   height: 896px;
   background-color: #000;
+  padding-bottom: 0.8rem;
 `;
 
 const StackUpsideDown = styled(Grid)`

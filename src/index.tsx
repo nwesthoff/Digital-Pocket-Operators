@@ -8,8 +8,10 @@ import { Helmet } from "react-helmet";
 
 const GlobalStyle = createGlobalStyle`
   body {
+    background-color: #1e1e1e;
     padding: 0;
     margin: 0;
+    overscroll-behavior: none;
   }
 `;
 
