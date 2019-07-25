@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { ThemePO28 } from "../../config/Theme";
 import { Typography } from "@material-ui/core";
+import { PaletteColor } from "@material-ui/core/styles/createPalette";
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -11,7 +12,32 @@ const ButtonBackground = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 60px;
-  background-color: ${ThemePO28.palette.primary.dark};
+  background: ${props =>
+    props.striped
+      ? `repeating-linear-gradient(
+          -45deg,
+          ${ThemePO28.palette.primary.dark},
+          ${ThemePO28.palette.primary.dark} 2px,
+          transparent 2px,
+          transparent 4px,
+          ${ThemePO28.palette.primary.dark} 4px,
+          ${ThemePO28.palette.primary.dark} 6px,
+          transparent 6px,
+          transparent 8px,
+          ${ThemePO28.palette.primary.dark} 8px,
+          ${ThemePO28.palette.primary.dark} 10px,
+          transparent 10px,
+          transparent 12px,
+          ${ThemePO28.palette.primary.dark} 12px,
+          ${ThemePO28.palette.primary.dark} 14px,
+          transparent 14px,
+          transparent 16px,
+          ${ThemePO28.palette.primary.dark} 16px,
+          ${ThemePO28.palette.primary.dark} 18px,
+          transparent 18px,
+          transparent 20px
+        )`
+      : ThemePO28.palette.primary.dark};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,19 +81,33 @@ const ButtonIconBox = styled.div`
 interface Props {
   name: string;
   icon?: React.Component;
+  textColor?:
+    | "initial"
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "textPrimary"
+    | "textSecondary"
+    | "error";
+
+  stripedBackground?: boolean;
 }
 
 export default class POButton extends Component<Props> {
   render() {
     return (
       <ButtonContainer>
-        <ButtonBackground>
+        <ButtonBackground striped={this.props.stripedBackground}>
           <ButtonLight on={Math.random() > 0.5 ? true : false} />
           <ButtonHousing>
             <POButtonClick />
           </ButtonHousing>
         </ButtonBackground>
-        <Typography variant="body1" color="primary" align="center">
+        <Typography
+          variant="body1"
+          color={this.props.textColor || "primary"}
+          align="center"
+        >
           {this.props.name}
         </Typography>
         {this.props.icon ? (

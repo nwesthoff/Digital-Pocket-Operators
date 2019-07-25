@@ -8,7 +8,7 @@ const PODisplayFrame = styled.div`
 `;
 
 const PODisplayBackground = styled.div`
-  background-color: ${ThemePO28.palette.secondary.main};
+  background-color: ${ThemePO28.palette.grey[50]};
   height: 130px;
   width: 100%;
   display: flex;

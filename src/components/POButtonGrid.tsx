@@ -25,7 +25,7 @@ export default class POButtonGrid extends Component {
       <Fragment>
         {[
           [
-            { name: "sound" },
+            { name: "sound", textColor: "secondary" },
             { name: "pattern" },
             { name: "bpm" },
             { name: "A", type: "knob" },
@@ -36,14 +36,14 @@ export default class POButtonGrid extends Component {
             { name: "2", icon: <PO28Button2Icon /> },
             { name: "3", icon: <PO28Button3Icon /> },
             { name: "4", icon: <PO28Button4Icon /> },
-            { name: "glide" }
+            { name: "glide", textColor: "secondary", stripedBackground: true }
           ],
           [
             { name: "5", icon: <PO28Button5Icon /> },
             { name: "6", icon: <PO28Button6Icon /> },
             { name: "7", icon: <PO28Button7Icon /> },
             { name: "8", icon: <PO28Button8Icon /> },
-            { name: "FX" }
+            { name: "FX", stripedBackground: true }
           ],
           [
             { name: "9", icon: <PO28Button9Icon /> },
@@ -57,7 +57,7 @@ export default class POButtonGrid extends Component {
             { name: "14", icon: <PO28Button14Icon /> },
             { name: "15", icon: <PO28Button15Icon /> },
             { name: "16", icon: <PO28Button16Icon /> },
-            { name: "write" }
+            { name: "write", stripedBackground: true }
           ]
         ].map((row, irow) => {
           return (
@@ -68,7 +68,11 @@ export default class POButtonGrid extends Component {
                     {button.type === "knob" ? (
                       <POKnob />
                     ) : (
-                      <POButton name={button.name} icon={button.icon} />
+                      <POButton
+                        name={button.name}
+                        icon={button.icon}
+                        {...button}
+                      />
                     )}
                   </Grid>
                 );
