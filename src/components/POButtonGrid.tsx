@@ -31,7 +31,18 @@ export default class POButtonGrid extends Component {
           [
             { name: "sound", textColor: "secondary" },
             { name: "pattern" },
-            { name: "bpm" },
+            {
+              name: "bpm",
+              function: () => {
+                if (synthStore.bpm === 80) {
+                  synthStore.bpm = 100;
+                } else if (synthStore.bpm === 100) {
+                  synthStore.bpm = 120;
+                } else {
+                  synthStore.bpm = 80;
+                }
+              }
+            },
             { name: "A", type: "knob" },
             {
               name: "B",

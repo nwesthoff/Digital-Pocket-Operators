@@ -25,13 +25,50 @@ const BPMValue = styled(Typography)`
   right: 25px;
 `;
 
+const HipHop = styled(Typography)`
+  position: absolute;
+  top: 10px;
+  left: 30px;
+`;
+
+const Disco = styled(Typography)`
+  position: absolute;
+  top: 10px;
+  left: 100px;
+`;
+
+const Dub = styled(Typography)`
+  position: absolute;
+  top: 25px;
+  left: 30px;
+`;
+
 @observer
 export default class PODisplay extends Component {
   render() {
     return (
       <PODisplayFrame>
         <PODisplayBackground>
-          <Typography variant="overline">Display Comes Here</Typography>
+          <HipHop
+            variant="body1"
+            style={{
+              opacity: synthStore.bpm === 80 ? 1 : 0.1
+            }}
+          >
+            HIP-HOP
+          </HipHop>
+          <Disco
+            variant="body1"
+            style={{ opacity: synthStore.bpm === 100 ? 1 : 0.1 }}
+          >
+            DISCO
+          </Disco>
+          <Dub
+            variant="body1"
+            style={{ opacity: synthStore.bpm === 120 ? 1 : 0.1 }}
+          >
+            TECHNO
+          </Dub>
           <BPMValue variant="h5">{synthStore.bpm}</BPMValue>
         </PODisplayBackground>
       </PODisplayFrame>
