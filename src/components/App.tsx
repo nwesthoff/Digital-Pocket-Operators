@@ -4,24 +4,19 @@ import { Grid } from "@material-ui/core";
 import POButtonGrid from "./POButtonGrid";
 import PODisplay from "./PODisplay";
 import POHeader from "./POHeader";
-import { observable } from "mobx";
-import { observer } from "mobx-react";
-import POTransport from "../synth/Transport";
-import Tone from "tone";
 
 const PhoneContainer = styled.div`
   border-radius: 5px;
-  max-height: 100%;
   max-width: 100%;
   width: 414px;
-  height: 896px;
+  height: 100%;
   background-color: #000;
-  padding-bottom: 0.8rem;
 `;
 
 const StackUpsideDown = styled(Grid)`
   height: 100%;
   width: 100%;
+  padding-bottom: 0.8rem;
 `;
 
 export default class App extends Component {
@@ -34,10 +29,21 @@ export default class App extends Component {
         style={{ height: "100vh" }}
       >
         <PhoneContainer>
-          <StackUpsideDown container direction="column" justify="flex-end">
-            <POHeader />
-            <PODisplay />
-            <POButtonGrid />
+          <StackUpsideDown
+            container
+            direction="row"
+            justify="center"
+            alignItems="flex-end"
+          >
+            <Grid item style={{ width: "100%" }}>
+              <POHeader />
+            </Grid>
+            <Grid item style={{ width: "100%" }}>
+              <PODisplay />
+            </Grid>
+            <Grid item style={{ width: "100%" }}>
+              <POButtonGrid />
+            </Grid>
           </StackUpsideDown>
         </PhoneContainer>
       </Grid>
