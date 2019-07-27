@@ -11,28 +11,35 @@ const CommonTheme = {
   }
 };
 
-export const ThemePO16 = createMuiTheme({
-  ...CommonTheme,
-  palette: {
-    primary: {
-      main: "#FA7548",
-      dark: "#C05133"
-    },
-    secondary: {
-      main: "#F6BA71"
-    }
+export const POThemes = {
+  ThemePO16: {
+    name: "factory",
+    theme: createMuiTheme({
+      ...CommonTheme,
+      palette: {
+        primary: {
+          main: "#FA7548",
+          dark: "#C05133"
+        },
+        secondary: {
+          main: "#F6BA71"
+        }
+      }
+    })
+  },
+  ThemePO28: {
+    name: "robot",
+    theme: createMuiTheme({
+      ...CommonTheme,
+      palette: {
+        primary: {
+          main: "#F5110E",
+          dark: "#B7281A"
+        },
+        secondary: {
+          main: "#D8A971"
+        }
+      }
+    })
   }
-});
-
-export const ThemePO28 = createMuiTheme({
-  ...CommonTheme,
-  palette: {
-    primary: {
-      main: "#F5110E",
-      dark: "#B7281A"
-    },
-    secondary: {
-      main: "#D8A971"
-    }
-  }
-});
+};

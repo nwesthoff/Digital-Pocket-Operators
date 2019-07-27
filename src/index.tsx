@@ -2,9 +2,11 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { ThemePO28 } from "./config/Theme";
+import { muiTheme } from "./config/Theme";
 import { MuiThemeProvider } from "@material-ui/core";
 import { Helmet } from "react-helmet";
+import { synthStore } from "./stores/SynthStore";
+import { observer } from "mobx-react";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -15,17 +17,21 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+@observer
 export default class Index extends React.Component {
   render() {
     return (
-      <MuiThemeProvider theme={ThemePO28}>
+      <MuiThemeProvider theme={synthStore.theme}>
         <Helmet>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           <link rel="manifest" href="/manifest.webmanifest" />
-          <meta name="theme-color" content={ThemePO28.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={synthStore.theme.palette.primary.main}
+          />
         </Helmet>
         <GlobalStyle />
         <App />

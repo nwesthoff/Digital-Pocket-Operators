@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { ThemePO28 } from "../../config/Theme";
 import { Typography } from "@material-ui/core";
-import { PaletteColor } from "@material-ui/core/styles/createPalette";
+import { synthStore } from "../../stores/SynthStore";
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -16,28 +15,28 @@ const ButtonBackground = styled.div`
     props.striped
       ? `repeating-linear-gradient(
           -45deg,
-          ${ThemePO28.palette.primary.dark},
-          ${ThemePO28.palette.primary.dark} 2px,
+          ${synthStore.theme.palette.primary.dark},
+          ${synthStore.theme.palette.primary.dark} 2px,
           transparent 2px,
           transparent 4px,
-          ${ThemePO28.palette.primary.dark} 4px,
-          ${ThemePO28.palette.primary.dark} 6px,
+          ${synthStore.theme.palette.primary.dark} 4px,
+          ${synthStore.theme.palette.primary.dark} 6px,
           transparent 6px,
           transparent 8px,
-          ${ThemePO28.palette.primary.dark} 8px,
-          ${ThemePO28.palette.primary.dark} 10px,
+          ${synthStore.theme.palette.primary.dark} 8px,
+          ${synthStore.theme.palette.primary.dark} 10px,
           transparent 10px,
           transparent 12px,
-          ${ThemePO28.palette.primary.dark} 12px,
-          ${ThemePO28.palette.primary.dark} 14px,
+          ${synthStore.theme.palette.primary.dark} 12px,
+          ${synthStore.theme.palette.primary.dark} 14px,
           transparent 14px,
           transparent 16px,
-          ${ThemePO28.palette.primary.dark} 16px,
-          ${ThemePO28.palette.primary.dark} 18px,
+          ${synthStore.theme.palette.primary.dark} 16px,
+          ${synthStore.theme.palette.primary.dark} 18px,
           transparent 18px,
           transparent 20px
         )`
-      : ThemePO28.palette.primary.dark};
+      : synthStore.theme.palette.primary.dark};
   display: flex;
   justify-content: center;
   align-items: center;

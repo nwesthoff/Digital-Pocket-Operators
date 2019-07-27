@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ThemePO28 } from "../config/Theme";
 import styled from "styled-components";
 import { Typography } from "@material-ui/core";
 import { synthStore } from "../stores/SynthStore";
@@ -10,7 +9,7 @@ const PODisplayFrame = styled.div`
 `;
 
 const PODisplayBackground = styled.div`
-  background-color: ${ThemePO28.palette.grey[50]};
+  background-color: ${synthStore.theme.palette.grey[50]};
   height: 130px;
   width: 100%;
   display: flex;

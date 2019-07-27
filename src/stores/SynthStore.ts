@@ -1,5 +1,7 @@
 import { observable, reaction } from "mobx";
 import Tone, { Synth, Sequence, NoteArray } from "tone";
+import { createMuiTheme, Theme } from "@material-ui/core";
+import { ThemePO28, POThemes } from "../config/Theme";
 
 export class SynthStore {
   constructor() {
@@ -19,6 +21,9 @@ export class SynthStore {
 
     this.sequence.start();
   }
+
+  @observable
+  theme: Theme = POThemes.ThemePO28.theme;
 
   @observable
   bpm: number = 120;
