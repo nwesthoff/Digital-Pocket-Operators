@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Typography } from "@material-ui/core";
 import { synthStore } from "../../stores/SynthStore";
+import { observer } from "mobx-react";
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -15,28 +16,28 @@ const ButtonBackground = styled.div`
     props.striped
       ? `repeating-linear-gradient(
           -45deg,
-          ${synthStore.theme.palette.primary.dark},
-          ${synthStore.theme.palette.primary.dark} 2px,
+          ${props.color},
+          ${props.color} 2px,
           transparent 2px,
           transparent 4px,
-          ${synthStore.theme.palette.primary.dark} 4px,
-          ${synthStore.theme.palette.primary.dark} 6px,
+          ${props.color} 4px,
+          ${props.color} 6px,
           transparent 6px,
           transparent 8px,
-          ${synthStore.theme.palette.primary.dark} 8px,
-          ${synthStore.theme.palette.primary.dark} 10px,
+          ${props.color} 8px,
+          ${props.color} 10px,
           transparent 10px,
           transparent 12px,
-          ${synthStore.theme.palette.primary.dark} 12px,
-          ${synthStore.theme.palette.primary.dark} 14px,
+          ${props.color} 12px,
+          ${props.color} 14px,
           transparent 14px,
           transparent 16px,
-          ${synthStore.theme.palette.primary.dark} 16px,
-          ${synthStore.theme.palette.primary.dark} 18px,
+          ${props.color} 16px,
+          ${props.color} 18px,
           transparent 18px,
           transparent 20px
         )`
-      : synthStore.theme.palette.primary.dark};
+      : props => props.color};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,6 +94,7 @@ interface Props {
   function?: VoidFunction;
 }
 
+@observer
 export default class POButton extends Component<Props> {
   handleClick = () => {
     this.props.function();
@@ -102,6 +104,7 @@ export default class POButton extends Component<Props> {
     return (
       <ButtonContainer>
         <ButtonBackground
+          color={synthStore.theme.palette.primary.dark}
           striped={this.props.stripedBackground}
           onClick={this.handleClick}
         >

@@ -26,7 +26,7 @@ const POKnobTwist = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  background-color: ${synthStore.theme.palette.primary.main};
+  background-color: ${props => props.mainColor};
   position: relative;
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@ const POKnobTwist = styled.div`
     height: 70%;
     width: 10px;
     border-radius: 5px;
-    background-color: ${synthStore.theme.palette.primary.dark};
+    background-color: ${props => props.darkColor};
   }
 `;
 
@@ -98,6 +98,8 @@ export default class POKnob extends Component<Props> {
       <ButtonBackground>
         <ButtonHousing>
           <POKnobTwist
+            mainColor={synthStore.theme.palette.primary.main}
+            darkColor={synthStore.theme.palette.primary.dark}
             style={{
               transform: `rotate(${(this.value - this.minValue) *
                 (260 / (this.maxValue - this.minValue)) -

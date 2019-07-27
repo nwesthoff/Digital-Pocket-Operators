@@ -12,6 +12,21 @@ const CommonTheme = {
 };
 
 export const POThemes = {
+  ThemePO14: {
+    name: "sub",
+    theme: createMuiTheme({
+      ...CommonTheme,
+      palette: {
+        primary: {
+          main: "#02C6EE",
+          dark: "#077F9A"
+        },
+        secondary: {
+          main: "#F6BA71"
+        }
+      }
+    })
+  },
   ThemePO16: {
     name: "factory",
     theme: createMuiTheme({
