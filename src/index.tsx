@@ -24,6 +24,7 @@ export default class Index extends React.Component {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <link rel="manifest" href="/manifest.webmanifest" />
           <meta name="theme-color" content={ThemePO28.palette.primary.main} />
         </Helmet>
         <GlobalStyle />
