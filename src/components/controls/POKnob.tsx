@@ -60,28 +60,27 @@ export default class POKnob extends Component<Props> {
   firstValue?: number = this.props.defaultValue || 0;
 
   componentWillUnmount() {
-    document.removeEventListener("pointermove", this.handleDrag, false);
-    document.removeEventListener("pointerup", this.handlePointerUp, false);
+    document.removeEventListener("touchmove", this.handleDrag, false);
+    document.removeEventListener("touchend", this.handlePointerUp, false);
   }
 
   applySensitivity = (value: number) => {
     return value / 4;
   };
 
-  handlePointerDown = e => {
-    e.preventDefault();
-    this.firstValue = this.applySensitivity(-e.pageY) - this.value;
+  startHandler = e => {
+    this.firstValue = this.applySensitivity(-e.touches[0].clientY) - this.value;
 
-    document.addEventListener("pointermove", this.handleDrag);
-    document.addEventListener("pointerup", this.handlePointerUp);
+    document.addEventListener("touchmove", this.handleDrag);
+    document.addEventListener("touchend", this.handlePointerUp);
   };
 
   handlePointerUp = () => {
-    document.removeEventListener("pointermove", this.handleDrag);
+    document.removeEventListener("touchmove", this.handleDrag);
   };
 
   handleDrag = e => {
-    const dy = this.applySensitivity(-e.y) - this.firstValue;
+    const dy = this.applySensitivity(-e.touches[0].clientY) - this.firstValue;
 
     if (dy < this.minValue) {
       this.value = this.minValue;
@@ -105,7 +104,7 @@ export default class POKnob extends Component<Props> {
                 (260 / (this.maxValue - this.minValue)) -
                 130}deg)`
             }}
-            onPointerDown={this.handlePointerDown}
+            onTouchStart={this.startHandler}
             value={this.value}
           />
         </ButtonHousing>
