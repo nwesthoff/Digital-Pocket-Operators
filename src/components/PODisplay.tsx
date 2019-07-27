@@ -68,6 +68,9 @@ export default class PODisplay extends Component {
           >
             TECHNO
           </Dub>
+          {synthStore.writemode ? (
+            <Typography variant="body1">writing</Typography>
+          ) : null}
           <BPMValue variant="h5">{synthStore.bpm}</BPMValue>
         </PODisplayBackground>
       </PODisplayFrame>

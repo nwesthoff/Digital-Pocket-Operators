@@ -21,11 +21,16 @@ export class SynthStore {
       { fireImmediately: true }
     );
 
-    this.synths[0].oscillator.type = "sawtooth";
-    const gain = new Tone.Gain(0.6);
-    gain.toMaster();
-
-    this.synths.map(synth => synth.connect(gain));
+    this.synths.map((synth, i: number) => {
+      synth.oscillator.type = "sawtooth";
+      let gainValue = 0.6;
+      if (i === 1) {
+        gainValue = 0.8;
+      }
+      const gain = new Tone.Gain(gainValue);
+      gain.toMaster();
+      synth.connect(gain);
+    });
 
     this.sequence.start();
   }
@@ -38,28 +43,29 @@ export class SynthStore {
 
   @observable
   swing: number = 0;
-
   @observable
-  synths: Synth[] = [new Tone.FMSynth()];
+  writemode: boolean = false;
+  @observable
+  synths: Synth[] = [new Tone.FMSynth(), new Tone.FMSynth()];
 
   @observable
   notes: NoteArray = [
-    "A3",
-    "B3",
-    "C3",
-    "D3",
-    "E3",
-    "F3",
-    "G3",
-    "G#3",
-    "A4",
-    "B4",
-    "C4",
-    "D4",
-    "E4",
-    "F4",
-    "G4",
-    "G#4"
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
   ];
 
   @observable

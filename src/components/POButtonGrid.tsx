@@ -18,9 +18,10 @@ import PO28Button13Icon from "../icons/PO28/Button13Icon";
 import PO28Button14Icon from "../icons/PO28/Button14Icon";
 import PO28Button15Icon from "../icons/PO28/Button15Icon";
 import PO28Button16Icon from "../icons/PO28/Button16Icon";
-import Tone from "tone";
+import Tone, { Transport } from "tone";
 import { synthStore } from "../stores/SynthStore";
 import { observer } from "mobx-react";
+import { PlayandSetNote } from "./utils/PlayAndSetNote";
 
 @observer
 export default class POButtonGrid extends Component {
@@ -65,24 +66,96 @@ export default class POButtonGrid extends Component {
             }
           ],
           [
-            { name: "1", icon: <PO28Button1Icon /> },
-            { name: "2", icon: <PO28Button2Icon /> },
-            { name: "3", icon: <PO28Button3Icon /> },
-            { name: "4", icon: <PO28Button4Icon /> },
+            {
+              name: "1",
+              icon: <PO28Button1Icon />,
+              function: () => {
+                PlayandSetNote("A3", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "2",
+              icon: <PO28Button2Icon />,
+              function: () => {
+                PlayandSetNote("B3", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "3",
+              icon: <PO28Button3Icon />,
+              function: () => {
+                PlayandSetNote("C3", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "4",
+              icon: <PO28Button4Icon />,
+              function: () => {
+                PlayandSetNote("D3", synthStore.progress - 1);
+              }
+            },
             { name: "glide", textColor: "secondary", stripedBackground: true }
           ],
           [
-            { name: "5", icon: <PO28Button5Icon /> },
-            { name: "6", icon: <PO28Button6Icon /> },
-            { name: "7", icon: <PO28Button7Icon /> },
-            { name: "8", icon: <PO28Button8Icon /> },
+            {
+              name: "5",
+              icon: <PO28Button5Icon />,
+              function: () => {
+                PlayandSetNote("E3", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "6",
+              icon: <PO28Button6Icon />,
+              function: () => {
+                PlayandSetNote("F3", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "7",
+              icon: <PO28Button7Icon />,
+              function: () => {
+                PlayandSetNote("G3", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "8",
+              icon: <PO28Button8Icon />,
+              function: () => {
+                PlayandSetNote("G#3", synthStore.progress - 1);
+              }
+            },
             { name: "FX", stripedBackground: true }
           ],
           [
-            { name: "9", icon: <PO28Button9Icon /> },
-            { name: "10", icon: <PO28Button10Icon /> },
-            { name: "11", icon: <PO28Button11Icon /> },
-            { name: "12", icon: <PO28Button12Icon /> },
+            {
+              name: "9",
+              icon: <PO28Button9Icon />,
+              function: () => {
+                PlayandSetNote("A4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "10",
+              icon: <PO28Button10Icon />,
+              function: () => {
+                PlayandSetNote("B4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "11",
+              icon: <PO28Button11Icon />,
+              function: () => {
+                PlayandSetNote("C4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "12",
+              icon: <PO28Button12Icon />,
+              function: () => {
+                PlayandSetNote("D4", synthStore.progress - 1);
+              }
+            },
             {
               name: "play",
               function: () => {
@@ -95,11 +168,41 @@ export default class POButtonGrid extends Component {
             }
           ],
           [
-            { name: "13", icon: <PO28Button13Icon /> },
-            { name: "14", icon: <PO28Button14Icon /> },
-            { name: "15", icon: <PO28Button15Icon /> },
-            { name: "16", icon: <PO28Button16Icon /> },
-            { name: "write", stripedBackground: true }
+            {
+              name: "13",
+              icon: <PO28Button13Icon />,
+              function: () => {
+                PlayandSetNote("E4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "14",
+              icon: <PO28Button14Icon />,
+              function: () => {
+                PlayandSetNote("F4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "15",
+              icon: <PO28Button15Icon />,
+              function: () => {
+                PlayandSetNote("G4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "16",
+              icon: <PO28Button16Icon />,
+              function: () => {
+                PlayandSetNote("G#4", synthStore.progress - 1);
+              }
+            },
+            {
+              name: "write",
+              stripedBackground: true,
+              function: () => {
+                synthStore.writemode = !synthStore.writemode;
+              }
+            }
           ]
         ].map((row, irow) => {
           return (
