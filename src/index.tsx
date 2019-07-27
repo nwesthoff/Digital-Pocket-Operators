@@ -2,7 +2,6 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { muiTheme } from "./config/Theme";
 import { MuiThemeProvider } from "@material-ui/core";
 import { Helmet } from "react-helmet";
 import { synthStore } from "./stores/SynthStore";

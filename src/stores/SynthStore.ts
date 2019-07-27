@@ -1,7 +1,7 @@
 import { observable, reaction } from "mobx";
 import Tone, { Synth, Sequence, NoteArray } from "tone";
-import { createMuiTheme, Theme } from "@material-ui/core";
-import { ThemePO28, POThemes } from "../config/Theme";
+import { Theme } from "@material-ui/core";
+import { POThemes } from "../config/Theme";
 
 export class SynthStore {
   constructor() {
