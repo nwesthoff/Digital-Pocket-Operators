@@ -42,6 +42,16 @@ const ButtonBackground = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+
+  &:before {
+    content: "";
+    top: 0px;
+    left: 18px;
+    width: 24px;
+    height: 8px;
+    position: absolute;
+    background-color: black;
+  }
 `;
 
 const ButtonHousing = styled.div`
@@ -55,10 +65,10 @@ const ButtonHousing = styled.div`
 
 const ButtonLight = styled.div`
   position: absolute;
-  top: 10px;
+  top: 0px;
   width: 5px;
   height: 5px;
-  background-color: ${props => (props.on ? "red" : "darkred")};
+  background-color: ${props => (props.on ? "red" : "white")};
 `;
 
 const POButtonClick = styled.div`
@@ -108,10 +118,10 @@ export default class POButton extends Component<Props> {
           striped={this.props.stripedBackground}
           onClick={this.handleClick}
         >
-          <ButtonLight on={this.props.lightOn} />
           <ButtonHousing>
             <POButtonClick />
           </ButtonHousing>
+          <ButtonLight on={this.props.lightOn} />
         </ButtonBackground>
         <Typography
           variant="body1"

@@ -58,13 +58,13 @@ export default class PODisplay extends Component {
           </HipHop>
           <Disco
             variant="body1"
-            style={{ opacity: synthStore.bpm === 100 ? 1 : 0.1 }}
+            style={{ opacity: synthStore.bpm === 120 ? 1 : 0.1 }}
           >
             DISCO
           </Disco>
           <Dub
             variant="body1"
-            style={{ opacity: synthStore.bpm === 120 ? 1 : 0.1 }}
+            style={{ opacity: synthStore.bpm === 140 ? 1 : 0.1 }}
           >
             TECHNO
           </Dub>

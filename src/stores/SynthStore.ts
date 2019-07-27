@@ -52,8 +52,13 @@ export class SynthStore {
   ];
 
   @observable
+  progress: number = 0;
+
+  @observable
   sequence: Sequence = new Tone.Sequence(
     (time, note) => {
+      synthStore.progress =
+        synthStore.progress < 16 ? synthStore.progress + 1 : 1;
       synthStore.synths[0].triggerAttackRelease(note, "16n", time);
     },
     this.notes,

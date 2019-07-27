@@ -35,9 +35,9 @@ export default class POButtonGrid extends Component {
               name: "bpm",
               function: () => {
                 if (synthStore.bpm === 80) {
-                  synthStore.bpm = 100;
-                } else if (synthStore.bpm === 100) {
                   synthStore.bpm = 120;
+                } else if (synthStore.bpm === 120) {
+                  synthStore.bpm = 140;
                 } else {
                   synthStore.bpm = 80;
                 }
@@ -103,8 +103,7 @@ export default class POButtonGrid extends Component {
                     ) : (
                       <POButton
                         lightOn={
-                          button.name ===
-                          (synthStore.sequence.progress + 1).toString()
+                          button.name === synthStore.progress.toString()
                             ? true
                             : false
                         }
