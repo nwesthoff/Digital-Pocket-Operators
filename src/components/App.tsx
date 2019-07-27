@@ -33,7 +33,7 @@ export default class App extends Component {
             container
             direction="row"
             justify="center"
-            alignItems="flex-end"
+            alignContent="flex-end"
           >
             <Grid item style={{ width: "100%" }}>
               <POHeader />
