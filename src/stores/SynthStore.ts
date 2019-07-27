@@ -45,6 +45,9 @@ export class SynthStore {
   swing: number = 0;
   @observable
   writemode: boolean = false;
+
+  @observable
+  holdbpm: boolean = false;
   @observable
   synths: Synth[] = [new Tone.FMSynth(), new Tone.FMSynth()];
 

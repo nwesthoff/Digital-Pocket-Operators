@@ -35,13 +35,27 @@ export default class POButtonGrid extends Component {
             {
               name: "bpm",
               function: () => {
-                if (synthStore.bpm === 80) {
-                  synthStore.bpm = 120;
-                } else if (synthStore.bpm === 120) {
-                  synthStore.bpm = 140;
-                } else {
-                  synthStore.bpm = 80;
-                }
+                synthStore.holdbpm = true;
+                const startTime = +new Date();
+
+                const setBPMHandler = () => {
+                  const endTime = +new Date();
+
+                  if (endTime - startTime < 200) {
+                    if (synthStore.bpm === 80) {
+                      synthStore.bpm = 120;
+                    } else if (synthStore.bpm === 120) {
+                      synthStore.bpm = 140;
+                    } else {
+                      synthStore.bpm = 80;
+                    }
+                  }
+
+                  synthStore.holdbpm = false;
+                  removeEventListener("pointerup", setBPMHandler);
+                };
+
+                addEventListener("pointerup", setBPMHandler);
               }
             },
             {
@@ -51,7 +65,9 @@ export default class POButtonGrid extends Component {
               minValue: 0,
               defaultValue: 0,
               setValue: (value: number) => {
-                synthStore.swing = value / 100;
+                if (synthStore.holdbpm) {
+                  synthStore.swing = value / 100;
+                }
               }
             },
             {
@@ -61,7 +77,9 @@ export default class POButtonGrid extends Component {
               minValue: 60,
               defaultValue: 100,
               setValue: (value: number) => {
-                synthStore.bpm = value;
+                if (synthStore.holdbpm) {
+                  synthStore.bpm = value;
+                }
               }
             }
           ],

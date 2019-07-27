@@ -71,7 +71,9 @@ export default class PODisplay extends Component {
           {synthStore.writemode ? (
             <Typography variant="body1">writing</Typography>
           ) : null}
-          <BPMValue variant="h5">{synthStore.bpm}</BPMValue>
+          {synthStore.holdbpm ? (
+            <BPMValue variant="h5">{synthStore.bpm}</BPMValue>
+          ) : null}
         </PODisplayBackground>
       </PODisplayFrame>
     );
