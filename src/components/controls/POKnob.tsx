@@ -65,7 +65,7 @@ export default class POKnob extends Component<Props> {
   }
 
   applySensitivity = (value: number) => {
-    return value;
+    return value / 4;
   };
 
   handlePointerDown = e => {

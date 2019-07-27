@@ -13,6 +13,14 @@ export class SynthStore {
       { fireImmediately: true }
     );
 
+    reaction(
+      () => this.swing,
+      () => {
+        Tone.Transport.swing = this.swing;
+      },
+      { fireImmediately: true }
+    );
+
     this.synths[0].oscillator.type = "sawtooth";
     const gain = new Tone.Gain(0.6);
     gain.toMaster();
@@ -27,6 +35,9 @@ export class SynthStore {
 
   @observable
   bpm: number = 120;
+
+  @observable
+  swing: number = 0;
 
   @observable
   synths: Synth[] = [new Tone.FMSynth()];

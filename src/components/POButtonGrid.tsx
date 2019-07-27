@@ -43,11 +43,20 @@ export default class POButtonGrid extends Component {
                 }
               }
             },
-            { name: "A", type: "knob" },
+            {
+              name: "A",
+              type: "knob",
+              maxValue: 100,
+              minValue: 0,
+              defaultValue: 0,
+              setValue: (value: number) => {
+                synthStore.swing = value / 100;
+              }
+            },
             {
               name: "B",
               type: "knob",
-              maxValue: 180,
+              maxValue: 240,
               minValue: 60,
               defaultValue: 100,
               setValue: (value: number) => {
