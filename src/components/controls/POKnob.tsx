@@ -60,8 +60,8 @@ export default class POKnob extends Component<Props> {
   firstValue?: number = this.props.defaultValue || 0;
 
   componentWillUnmount() {
-    document.removeEventListener("pointermove", this.handleDrag, false);
-    document.removeEventListener("pointerup", this.handlePointerUp, false);
+    document.removeEventListener("mousemove", this.handleDrag, false);
+    document.removeEventListener("mouseup", this.handlePointerUp, false);
   }
 
   applySensitivity = (value: number) => {
@@ -72,12 +72,12 @@ export default class POKnob extends Component<Props> {
     e.preventDefault();
     this.firstValue = this.applySensitivity(-e.pageY) - this.value;
 
-    document.addEventListener("pointermove", this.handleDrag);
-    document.addEventListener("pointerup", this.handlePointerUp);
+    document.addEventListener("mousemove", this.handleDrag);
+    document.addEventListener("mouseup", this.handlePointerUp);
   };
 
   handlePointerUp = () => {
-    document.removeEventListener("pointermove", this.handleDrag);
+    document.removeEventListener("mousemove", this.handleDrag);
   };
 
   handleDrag = e => {
@@ -103,7 +103,7 @@ export default class POKnob extends Component<Props> {
                 (260 / (this.maxValue - this.minValue)) -
                 130}deg)`
             }}
-            onPointerDown={this.handlePointerDown}
+            onMouseDown={this.handlePointerDown}
             value={this.value}
           />
         </ButtonHousing>
