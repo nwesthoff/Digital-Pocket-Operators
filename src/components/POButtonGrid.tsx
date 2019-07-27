@@ -18,10 +18,10 @@ import PO28Button13Icon from "../icons/PO28/Button13Icon";
 import PO28Button14Icon from "../icons/PO28/Button14Icon";
 import PO28Button15Icon from "../icons/PO28/Button15Icon";
 import PO28Button16Icon from "../icons/PO28/Button16Icon";
-import Tone, { Transport } from "tone";
+import Tone from "tone";
 import { synthStore } from "../stores/SynthStore";
 import { observer } from "mobx-react";
-import { PlayandSetNote } from "./utils/PlayAndSetNote";
+import { PlayandSetNote } from "./utils/PlayandSetNote";
 
 @observer
 export default class POButtonGrid extends Component {
