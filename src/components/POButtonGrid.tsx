@@ -52,10 +52,10 @@ export default class POButtonGrid extends Component {
                   }
 
                   synthStore.holdbpm = false;
-                  removeEventListener("pointerup", setBPMHandler);
+                  removeEventListener("touchend", setBPMHandler);
                 };
 
-                addEventListener("pointerup", setBPMHandler);
+                addEventListener("touchend", setBPMHandler);
               }
             },
             {

@@ -116,7 +116,7 @@ export default class POButton extends Component<Props> {
         <ButtonBackground
           color={synthStore.theme.palette.primary.dark}
           striped={this.props.stripedBackground}
-          onClick={this.handleClick}
+          onTouchStart={this.handleClick}
         >
           <ButtonHousing>
             <POButtonClick />
