@@ -58,6 +58,7 @@ export default class POKnob extends Component<Props> {
   maxValue: number = this.props.maxValue || 100;
   @observable
   firstValue?: number = this.props.defaultValue || 0;
+  touchId?: number;
 
   componentWillUnmount() {
     document.removeEventListener("touchmove", this.handleDrag, false);
@@ -65,11 +66,14 @@ export default class POKnob extends Component<Props> {
   }
 
   applySensitivity = (value: number) => {
-    return value / 4;
+    return value / 3;
   };
 
-  startHandler = e => {
-    this.firstValue = this.applySensitivity(-e.touches[0].clientY) - this.value;
+  startHandler = (e: TouchEvent) => {
+    this.touchId = e.targetTouches[0].identifier;
+    this.firstValue =
+      this.applySensitivity(-e.touches[e.targetTouches[0].identifier].clientY) -
+      this.value;
 
     document.addEventListener("touchmove", this.handleDrag);
     document.addEventListener("touchend", this.handlePointerUp);
@@ -79,8 +83,9 @@ export default class POKnob extends Component<Props> {
     document.removeEventListener("touchmove", this.handleDrag);
   };
 
-  handleDrag = e => {
-    const dy = this.applySensitivity(-e.touches[0].clientY) - this.firstValue;
+  handleDrag = (e: TouchEvent) => {
+    const dy =
+      this.applySensitivity(-e.touches[this.touchId].clientY) - this.firstValue;
 
     if (dy < this.minValue) {
       this.value = this.minValue;
