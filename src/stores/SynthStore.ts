@@ -29,6 +29,7 @@ export class SynthStore {
       }
       const gain = new Tone.Gain(gainValue);
       gain.toMaster();
+      console.log(Tone.Master.volume.value);
       synth.connect(gain);
     });
 
