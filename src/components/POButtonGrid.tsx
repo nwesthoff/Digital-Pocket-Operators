@@ -129,7 +129,21 @@ export default class POButtonGrid extends Component {
                 }
               }
             },
-            { name: "glide", textColor: "secondary", stripedBackground: true }
+            {
+              name: "glide",
+              textColor: "secondary",
+              stripedBackground: true,
+              function: () => {
+                synthStore.modifiers.glide = true;
+
+                const setGlideHandler = () => {
+                  synthStore.modifiers.glide = false;
+                  removeEventListener("touchend", setGlideHandler);
+                };
+
+                addEventListener("touchend", setGlideHandler);
+              }
+            }
           ],
           [
             {

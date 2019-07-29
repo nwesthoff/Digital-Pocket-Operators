@@ -73,12 +73,12 @@ export default class POKnob extends Component<Props> {
       this.applySensitivity(-e.touches[e.targetTouches[0].identifier].clientY) -
       this.value;
 
-    document.addEventListener("touchmove", this.handleDrag);
-    document.addEventListener("touchend", this.handlePointerUp);
+    addEventListener("touchmove", this.handleDrag);
+    addEventListener("touchend", this.handlePointerUp);
   };
 
   handlePointerUp = () => {
-    document.removeEventListener("touchmove", this.handleDrag);
+    removeEventListener("touchmove", this.handleDrag);
   };
 
   handleDrag = (e: TouchEvent) => {

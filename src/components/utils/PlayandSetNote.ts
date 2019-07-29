@@ -1,7 +1,7 @@
 import { synthStore } from "../../stores/SynthStore";
 
 export const PlayandSetNote = (note: string, index: number) => {
-  document.addEventListener("touchend", () => {
+  addEventListener("touchend", () => {
     synthStore.synths[1].triggerRelease();
   });
 
