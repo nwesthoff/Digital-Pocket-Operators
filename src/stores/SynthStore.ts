@@ -1,5 +1,13 @@
-import { observable, reaction } from "mobx";
-import Tone, { Synth, Sequence, NoteArray } from "tone";
+import { observable, reaction, ObservableMap } from "mobx";
+import Tone, {
+  Synth,
+  Sequence,
+  NoteArray,
+  Oscillator,
+  LFO,
+  Filter,
+  LowpassCombFilter
+} from "tone";
 import { Theme } from "@material-ui/core";
 import { POThemes } from "../config/Theme";
 
@@ -21,16 +29,34 @@ export class SynthStore {
       { fireImmediately: true }
     );
 
+    reaction(
+      () => this.synthFilterCutoff,
+      () => {
+        this.LFO.max = this.synthFilterCutoff + 500;
+        this.LFO.min = this.synthFilterCutoff - 500;
+      },
+      { fireImmediately: true }
+    );
+
+    reaction(
+      () => this.synthFilterResonance,
+      () => {
+        this.filter.resonance.value = this.synthFilterResonance;
+      },
+      { fireImmediately: true }
+    );
+
     this.synths.map((synth, i: number) => {
       synth.oscillator.type = "sawtooth";
+      this.LFO.connect(this.filter.dampening).start();
+
       let gainValue = 0.6;
       if (i === 1) {
         gainValue = 0.8;
       }
+
       const gain = new Tone.Gain(gainValue);
-      gain.toMaster();
-      console.log(Tone.Master.volume.value);
-      synth.connect(gain);
+      synth.chain(this.filter, gain, Tone.Master);
     });
 
     this.sequence.start();
@@ -40,15 +66,38 @@ export class SynthStore {
   theme: Theme = POThemes.ThemePO28.theme;
 
   @observable
+  modifiers = {
+    bpm: false,
+    write: false,
+    sound: false,
+    pattern: false,
+    fx: false,
+    glide: false
+  };
+
+  @observable
   bpm: number = 120;
 
   @observable
   swing: number = 0;
-  @observable
-  writemode: boolean = false;
 
   @observable
-  holdbpm: boolean = false;
+  synthFilterCutoff: number = 0;
+  @observable
+  synthFilterResonance: number = 0.5;
+
+  @observable
+  filter: LowpassCombFilter = new Tone.LowpassCombFilter(0, 0.5, 3000);
+
+  @observable
+  LFO: LFO = new Tone.LFO({
+    type: "sine",
+    min: 500,
+    max: 1000,
+    frequency: "16n",
+    amplitude: 1
+  });
+
   @observable
   synths: Synth[] = [new Tone.FMSynth(), new Tone.FMSynth()];
 

@@ -1,9 +1,13 @@
 import { synthStore } from "../../stores/SynthStore";
 
 export const PlayandSetNote = (note: string, index: number) => {
-  synthStore.synths[1].triggerAttackRelease(note, "16n");
+  document.addEventListener("touchend", () => {
+    synthStore.synths[1].triggerRelease();
+  });
 
-  if (synthStore.writemode) {
+  synthStore.synths[1].triggerAttack(note);
+
+  if (synthStore.modifiers.write) {
     synthStore.sequence.at(index, note);
   }
 };

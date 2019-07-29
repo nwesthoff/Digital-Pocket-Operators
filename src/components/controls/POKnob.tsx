@@ -43,8 +43,6 @@ const POKnobTwist = styled.div`
 `;
 
 interface Props {
-  minValue?: number;
-  maxValue?: number;
   defaultValue?: number;
   setValue?: (value: number) => {};
 }
@@ -54,8 +52,8 @@ export default class POKnob extends Component<Props> {
   @observable
   value: number = this.props.defaultValue || 0;
 
-  minValue: number = this.props.minValue || 0;
-  maxValue: number = this.props.maxValue || 100;
+  minValue: number = 0;
+  maxValue: number = 100;
   @observable
   firstValue?: number = this.props.defaultValue || 0;
   touchId?: number;
@@ -93,7 +91,7 @@ export default class POKnob extends Component<Props> {
       this.value = this.maxValue;
     } else {
       this.value = dy;
-      this.props.setValue(Math.round(dy));
+      this.props.setValue(dy);
     }
   };
 

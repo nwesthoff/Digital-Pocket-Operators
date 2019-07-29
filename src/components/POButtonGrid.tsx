@@ -36,7 +36,7 @@ export default class POButtonGrid extends Component {
             {
               name: "bpm",
               function: () => {
-                synthStore.holdbpm = true;
+                synthStore.modifiers.bpm = true;
                 const startTime = +new Date();
 
                 const setBPMHandler = () => {
@@ -52,7 +52,7 @@ export default class POButtonGrid extends Component {
                     }
                   }
 
-                  synthStore.holdbpm = false;
+                  synthStore.modifiers.bpm = false;
                   removeEventListener("touchend", setBPMHandler);
                 };
 
@@ -62,24 +62,24 @@ export default class POButtonGrid extends Component {
             {
               name: "A",
               type: "knob",
-              maxValue: 100,
-              minValue: 0,
               defaultValue: 0,
               setValue: (value: number) => {
-                if (synthStore.holdbpm) {
+                if (synthStore.modifiers.bpm) {
                   synthStore.swing = value / 100;
+                } else {
+                  synthStore.synthFilterCutoff = value * 50;
                 }
               }
             },
             {
               name: "B",
               type: "knob",
-              maxValue: 240,
-              minValue: 60,
-              defaultValue: 100,
+              defaultValue: 10,
               setValue: (value: number) => {
-                if (synthStore.holdbpm) {
-                  synthStore.bpm = value;
+                if (synthStore.modifiers.bpm) {
+                  synthStore.bpm = (value / 100) * 180 + 60;
+                } else {
+                  synthStore.synthFilterResonance = (value / 100) * 0.7;
                 }
               }
             }
@@ -89,7 +89,7 @@ export default class POButtonGrid extends Component {
               name: "1",
               icon: <PO28Button1Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(1);
                 } else {
                   PlayandSetNote("A3", synthStore.progress - 1);
@@ -100,7 +100,7 @@ export default class POButtonGrid extends Component {
               name: "2",
               icon: <PO28Button2Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(2);
                 } else {
                   PlayandSetNote("B3", synthStore.progress - 1);
@@ -111,7 +111,7 @@ export default class POButtonGrid extends Component {
               name: "3",
               icon: <PO28Button3Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(3);
                 } else {
                   PlayandSetNote("C3", synthStore.progress - 1);
@@ -122,7 +122,7 @@ export default class POButtonGrid extends Component {
               name: "4",
               icon: <PO28Button4Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(4);
                 } else {
                   PlayandSetNote("D3", synthStore.progress - 1);
@@ -136,7 +136,7 @@ export default class POButtonGrid extends Component {
               name: "5",
               icon: <PO28Button5Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(5);
                 } else {
                   PlayandSetNote("E3", synthStore.progress - 1);
@@ -147,7 +147,7 @@ export default class POButtonGrid extends Component {
               name: "6",
               icon: <PO28Button6Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(6);
                 } else {
                   PlayandSetNote("F3", synthStore.progress - 1);
@@ -158,7 +158,7 @@ export default class POButtonGrid extends Component {
               name: "7",
               icon: <PO28Button7Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(7);
                 } else {
                   PlayandSetNote("G3", synthStore.progress - 1);
@@ -169,7 +169,7 @@ export default class POButtonGrid extends Component {
               name: "8",
               icon: <PO28Button8Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(8);
                 } else {
                   PlayandSetNote("G#3", synthStore.progress - 1);
@@ -183,7 +183,7 @@ export default class POButtonGrid extends Component {
               name: "9",
               icon: <PO28Button9Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(9);
                 } else {
                   PlayandSetNote("A4", synthStore.progress - 1);
@@ -194,7 +194,7 @@ export default class POButtonGrid extends Component {
               name: "10",
               icon: <PO28Button10Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(10);
                 } else {
                   PlayandSetNote("B4", synthStore.progress - 1);
@@ -205,7 +205,7 @@ export default class POButtonGrid extends Component {
               name: "11",
               icon: <PO28Button11Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(11);
                 } else {
                   PlayandSetNote("C4", synthStore.progress - 1);
@@ -216,7 +216,7 @@ export default class POButtonGrid extends Component {
               name: "12",
               icon: <PO28Button12Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(12);
                 } else {
                   PlayandSetNote("D4", synthStore.progress - 1);
@@ -239,7 +239,7 @@ export default class POButtonGrid extends Component {
               name: "13",
               icon: <PO28Button13Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(13);
                 } else {
                   PlayandSetNote("E4", synthStore.progress - 1);
@@ -250,7 +250,7 @@ export default class POButtonGrid extends Component {
               name: "14",
               icon: <PO28Button14Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(14);
                 } else {
                   PlayandSetNote("F4", synthStore.progress - 1);
@@ -261,7 +261,7 @@ export default class POButtonGrid extends Component {
               name: "15",
               icon: <PO28Button15Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(15);
                 } else {
                   PlayandSetNote("G4", synthStore.progress - 1);
@@ -272,7 +272,7 @@ export default class POButtonGrid extends Component {
               name: "16",
               icon: <PO28Button16Icon />,
               function: () => {
-                if (synthStore.holdbpm === true) {
+                if (synthStore.modifiers.bpm === true) {
                   SetVolume(16);
                 } else {
                   PlayandSetNote("G#4", synthStore.progress - 1);
@@ -283,7 +283,7 @@ export default class POButtonGrid extends Component {
               name: "write",
               stripedBackground: true,
               function: () => {
-                synthStore.writemode = !synthStore.writemode;
+                synthStore.modifiers.write = !synthStore.modifiers.write;
               }
             }
           ]
