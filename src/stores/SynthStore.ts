@@ -1,18 +1,19 @@
-import { observable, reaction, ObservableMap } from "mobx";
+import { observable, reaction } from "mobx";
 import Tone, {
   Synth,
   Sequence,
   NoteArray,
-  Oscillator,
   LFO,
-  Filter,
-  LowpassCombFilter
+  LowpassCombFilter,
+  Encoding
 } from "tone";
 import { Theme } from "@material-ui/core";
 import { POThemes } from "../config/Theme";
 
 export class SynthStore {
   constructor() {
+    Tone.Context.latencyHint = "playback";
+
     reaction(
       () => this.bpm,
       () => {
@@ -47,7 +48,7 @@ export class SynthStore {
     );
 
     this.synths.map((synth, i: number) => {
-      synth.oscillator.type = "sawtooth";
+      synth.oscillator.type = "sine";
       this.LFO.connect(this.filter.dampening).start();
 
       let gainValue = 0.6;
@@ -66,9 +67,13 @@ export class SynthStore {
   theme: Theme = POThemes.ThemePO28.theme;
 
   @observable
+  selectedNote: Encoding.Note = "A4";
+
+  @observable
   modifiers = {
     bpm: false,
     write: false,
+    holdwrite: false,
     sound: false,
     pattern: false,
     fx: false,
@@ -102,26 +107,6 @@ export class SynthStore {
   synths: Synth[] = [new Tone.FMSynth(), new Tone.FMSynth()];
 
   @observable
-  notes: NoteArray = [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ];
-
-  @observable
   progress: number = 0;
 
   @observable
@@ -131,7 +116,7 @@ export class SynthStore {
         synthStore.progress < 16 ? synthStore.progress + 1 : 1;
       synthStore.synths[0].triggerAttackRelease(note, "16n", time);
     },
-    this.notes,
+    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     "16n"
   );
 }

@@ -31,7 +31,20 @@ export default class POButtonGrid extends Component {
       <Fragment>
         {[
           [
-            { name: "sound", textColor: "secondary" },
+            {
+              name: "sound",
+              textColor: "secondary",
+              function: () => {
+                synthStore.modifiers.sound = true;
+
+                const setSoundHandler = () => {
+                  synthStore.modifiers.sound = false;
+                  removeEventListener("touchend", setSoundHandler);
+                };
+
+                addEventListener("touchend", setSoundHandler);
+              }
+            },
             { name: "pattern" },
             {
               name: "bpm",
@@ -92,7 +105,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(1);
                 } else {
-                  PlayandSetNote("A3", synthStore.progress - 1);
+                  PlayandSetNote("E5", 0);
                 }
               }
             },
@@ -103,7 +116,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(2);
                 } else {
-                  PlayandSetNote("B3", synthStore.progress - 1);
+                  PlayandSetNote("F5", 1);
                 }
               }
             },
@@ -114,7 +127,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(3);
                 } else {
-                  PlayandSetNote("C3", synthStore.progress - 1);
+                  PlayandSetNote("G5", 2);
                 }
               }
             },
@@ -125,7 +138,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(4);
                 } else {
-                  PlayandSetNote("D3", synthStore.progress - 1);
+                  PlayandSetNote("G#5", 3);
                 }
               }
             },
@@ -153,7 +166,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(5);
                 } else {
-                  PlayandSetNote("E3", synthStore.progress - 1);
+                  PlayandSetNote("A4", 4);
                 }
               }
             },
@@ -164,7 +177,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(6);
                 } else {
-                  PlayandSetNote("F3", synthStore.progress - 1);
+                  PlayandSetNote("B4", 5);
                 }
               }
             },
@@ -175,7 +188,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(7);
                 } else {
-                  PlayandSetNote("G3", synthStore.progress - 1);
+                  PlayandSetNote("C5", 6);
                 }
               }
             },
@@ -186,7 +199,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(8);
                 } else {
-                  PlayandSetNote("G#3", synthStore.progress - 1);
+                  PlayandSetNote("D5", 7);
                 }
               }
             },
@@ -200,7 +213,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(9);
                 } else {
-                  PlayandSetNote("A4", synthStore.progress - 1);
+                  PlayandSetNote("E4", 8);
                 }
               }
             },
@@ -211,7 +224,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(10);
                 } else {
-                  PlayandSetNote("B4", synthStore.progress - 1);
+                  PlayandSetNote("F4", 9);
                 }
               }
             },
@@ -222,7 +235,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(11);
                 } else {
-                  PlayandSetNote("C4", synthStore.progress - 1);
+                  PlayandSetNote("G4", 10);
                 }
               }
             },
@@ -233,7 +246,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(12);
                 } else {
-                  PlayandSetNote("D4", synthStore.progress - 1);
+                  PlayandSetNote("G#4", 11);
                 }
               }
             },
@@ -256,7 +269,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(13);
                 } else {
-                  PlayandSetNote("E4", synthStore.progress - 1);
+                  PlayandSetNote("A3", 12);
                 }
               }
             },
@@ -267,7 +280,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(14);
                 } else {
-                  PlayandSetNote("F4", synthStore.progress - 1);
+                  PlayandSetNote("B3", 13);
                 }
               }
             },
@@ -278,7 +291,7 @@ export default class POButtonGrid extends Component {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(15);
                 } else {
-                  PlayandSetNote("G4", synthStore.progress - 1);
+                  PlayandSetNote("C4", 14);
                 }
               }
             },
@@ -288,8 +301,10 @@ export default class POButtonGrid extends Component {
               function: () => {
                 if (synthStore.modifiers.bpm === true) {
                   SetVolume(16);
+                } else if (synthStore.modifiers.sound) {
+                  console.log("selected drumkit");
                 } else {
-                  PlayandSetNote("G#4", synthStore.progress - 1);
+                  PlayandSetNote("D4", 15);
                 }
               }
             },
@@ -298,6 +313,14 @@ export default class POButtonGrid extends Component {
               stripedBackground: true,
               function: () => {
                 synthStore.modifiers.write = !synthStore.modifiers.write;
+                synthStore.modifiers.holdwrite = true;
+
+                const setHoldWriteHandler = () => {
+                  synthStore.modifiers.holdwrite = false;
+                  removeEventListener("touchend", setHoldWriteHandler);
+                };
+
+                addEventListener("touchend", setHoldWriteHandler);
               }
             }
           ]
