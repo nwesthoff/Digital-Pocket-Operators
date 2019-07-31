@@ -10,7 +10,7 @@ If you'd like to see what I've done, this is a [demo](https://digital-pocket-ope
 
 ## Development
 
-It's built with React, uses Parcel as a bundler and uses mobx for global reactivity and such.
+It's built with [ToneJS](https://tonejs.github.io/), [React](https://reactjs.org/), uses [Parcel](https://parceljs.org/) as a bundler and [mobx](https://mobx.js.org/index.html) for global data stores.
 
 You can run the project locally on [http://localhost:1234](http://localhost:1234) using
 
